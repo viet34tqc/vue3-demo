@@ -6,7 +6,8 @@ import {
 } from "@/constants";
 import { axiosInstance } from "@/core/axios";
 import { debounce } from "@/utilities";
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
+import { useRouter } from "vue-router";
 const searchQuery = ref("");
 const searchResult = ref([]);
 const searchError = ref(null);
@@ -27,6 +28,20 @@ const handleInput = async () => {
   if (!searchQuery.value) return;
   loading.value = true;
   await fetchData();
+};
+
+const router = useRouter();
+const viewCityInfo = (data) => {
+  const [city, state] = toRaw(data).place_name.split(",");
+  router.push({
+    name: "cityView",
+    params: { state: state.replaceAll(" ", ""), city: city },
+    query: {
+      lat: toRaw(data).geometry.coordinates[1],
+      lng: toRaw(data).geometry.coordinates[0],
+      preview: true,
+    },
+  });
 };
 </script>
 
@@ -59,6 +74,7 @@ const handleInput = async () => {
           v-for="item in searchResult"
           :key="item.id"
           class="py-2 cursor-pointer"
+          @click="viewCityInfo(item)"
         >
           {{ item.place_name }}
         </li>
