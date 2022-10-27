@@ -1,19 +1,36 @@
 <script setup>
-defineEmits(["close-modal"]);
-defineProps({
+import { watch } from "vue";
+
+const emit = defineEmits(["close-modal"]);
+const props = defineProps({
   modalActive: {
     type: Boolean,
     default: false,
   },
 });
+
+const onKeyUpEsc = (e) => {
+  if (e.which === 27) {
+    emit("close-modal");
+  }
+};
+
+watch(
+  () => props.modalActive,
+  (value) => {
+    if (!value) {
+      window.removeEventListener("keyup", onKeyUpEsc);
+    } else {
+      window.addEventListener("keyup", onKeyUpEsc);
+    }
+  }
+);
 </script>
 <template>
   <Teleport to="body">
     <Transition name="modal-outer">
       <div
         v-show="modalActive"
-        @keyup.esc="$emit('close-modal')"
-        tabindex="0"
         class="absolute w-full bg-black bg-opacity-30 h-screen top-0 left-0 flex justify-center px-8"
       >
         <Transition name="modal-inner">
