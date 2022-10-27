@@ -3,10 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "checkJs": true, // Add this when the import not work on save, or the suggestion broken
-    // Fix Cannot use JSX unless the '--jsx' flag is provided\
-    // Fix React refers to UMD global, but the current file is a module
     "paths": {
-      "src/*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["./**/*.js", "./**/*.ts", "./**/*.vue"]
 }
