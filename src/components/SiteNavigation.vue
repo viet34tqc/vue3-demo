@@ -1,11 +1,37 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 import BaseModal from "./BaseModal.vue";
-
 const modalActive = ref(false);
 const toggleModal = () => {
   modalActive.value = !modalActive.value;
+};
+
+const route = useRoute();
+const trackCity = () => {
+  let nextTrackedCities = [];
+  if (localStorage.getItem("trackedCities")) {
+    nextTrackedCities = JSON.parse(localStorage.getItem("trackedCities"));
+  }
+
+  // Check if the city is already on the list
+  const isTrackedAlready = nextTrackedCities.some(
+    (city) => city.id === `${route.params.state}-${route.params.city}`
+  );
+  if (isTrackedAlready) return;
+
+  const locationObj = {
+    id: `${route.params.state}-${route.params.city}`,
+    state: route.params.state,
+    city: route.params.city,
+    coords: {
+      lat: route.query.lat,
+      lng: route.query.lng,
+    },
+  };
+
+  nextTrackedCities.push(locationObj);
+  localStorage.setItem("trackedCities", JSON.stringify(nextTrackedCities));
 };
 </script>
 
@@ -23,6 +49,9 @@ const toggleModal = () => {
       <div class="flex gap-3 flex-1 justify-end">
         <button class="border py-1 px-3 rounded-sm" @click="toggleModal">
           Guide
+        </button>
+        <button class="border py-1 px-3 rounded-sm" @click="trackCity">
+          Track city
         </button>
       </div>
 
