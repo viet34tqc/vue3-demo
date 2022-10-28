@@ -24,10 +24,10 @@ const fetchData = debounce(async () => {
   }
   loading.value = false;
 });
-const handleInput = async () => {
+const handleInput = () => {
   if (!searchQuery.value) return;
   loading.value = true;
-  await fetchData();
+  fetchData();
 };
 
 const router = useRouter();
