@@ -1,4 +1,5 @@
 <script setup>
+import CityList from "@/components/CityList/CityList.vue";
 import {
   mapboxAPIKey,
   NO_SEARCH_RESULT_MESS,
@@ -79,6 +80,16 @@ const viewCityInfo = (data) => {
           {{ item.place_name }}
         </li>
       </ul>
+    </div>
+
+    <!-- Citi list -->
+    <div class="flex flex-col gap-4">
+      <Suspense>
+        <CityList />
+        <template #fallback>
+          <div>Loading...</div>
+        </template>
+      </Suspense>
     </div>
   </main>
 </template>
