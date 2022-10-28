@@ -33,9 +33,11 @@ const getWeatherData = async () => {
 const weatherData = await getWeatherData();
 const router = useRouter();
 const removeCity = () => {
-  const cities = JSON.parse(localStorage.getItem("savedCities"));
-  const updatedCities = cities.filter((city) => city.id !== route.query.id);
-  localStorage.setItem("savedCities", JSON.stringify(updatedCities));
+  const cities = JSON.parse(localStorage.getItem("trackedCities"));
+  const updatedCities = cities.filter(
+    (city) => city.id !== `${route.query.id}`
+  );
+  localStorage.setItem("trackedCities", JSON.stringify(updatedCities));
   router.push({
     name: "home",
   });

@@ -68,7 +68,7 @@ const viewCityInfo = (data) => {
         {{ NO_SEARCH_RESULT_MESS }}
       </p>
       <ul
-        class="absolute bg-weather-secondary text-white w-full shadow-md py-2 px-1 top-[66px]"
+        class="absolute bg-weather-secondary text-white w-full shadow-md py-2 px-1 top-[66px] z-10"
         v-if="searchQuery && !loading && searchResult.length >= 0"
       >
         <li

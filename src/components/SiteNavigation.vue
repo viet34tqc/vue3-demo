@@ -18,7 +18,10 @@ const trackCity = () => {
   const isTrackedAlready = nextTrackedCities.some(
     (city) => city.id === `${route.params.state}-${route.params.city}`
   );
-  if (isTrackedAlready) return;
+  if (isTrackedAlready) {
+    alert("This city is already on the list");
+    return;
+  }
 
   const locationObj = {
     id: `${route.params.state}-${route.params.city}`,
