@@ -45,7 +45,7 @@ const trackCity = () => {
     >
       <RouterLink :to="{ name: 'home' }">
         <div class="flex items-center gap-3">
-          <p class="text-2xl">The Local Weather</p>
+          <p class="text-2xl">Vue3 Demo</p>
         </div>
       </RouterLink>
 
@@ -62,8 +62,8 @@ const trackCity = () => {
         <div class="text-black">
           <h1 class="text-2xl mb-1">About:</h1>
           <p class="mb-4">
-            The Local Weather allows you to track the current and future weather
-            of cities of your choosing.
+            This is an relatively simple demo of Vue 3. You can look for the
+            weather of the cities and also track the city
           </p>
           <h2 class="text-2xl">How it works:</h2>
           <ol class="list-decimal list-inside mb-4">
@@ -71,12 +71,12 @@ const trackCity = () => {
               Search for your city by entering the name into the search bar.
             </li>
             <li>
-              Select a city within the results, this will take you to the
-              current weather for your selection.
+              Select a city within the results, click to view weather detail of
+              that city.
             </li>
             <li>
-              Track the city by clicking on the "+" icon in the top right. This
-              will save the city to view at a later time on the home page.
+              Track the city by clicking on the "Track" button in the top right.
+              This will save the city to view at a later time on the home page.
             </li>
           </ol>
 
