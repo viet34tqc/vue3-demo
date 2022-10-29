@@ -87,7 +87,7 @@ const viewCityInfo = (data) => {
       <Suspense>
         <CityList />
         <template #fallback>
-          <div>Loading...</div>
+          <main class="container">Loading...</main>
         </template>
       </Suspense>
     </div>
