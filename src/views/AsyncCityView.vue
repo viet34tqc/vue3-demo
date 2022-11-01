@@ -51,10 +51,7 @@ const removeCity = () => {
       v-if="route.query.preview"
       class="text-white p-4 bg-weather-secondary w-full text-center"
     >
-      <p>
-        You are currently previewing this city, click the "+" icon to start
-        tracking this city.
-      </p>
+      <p>Click the "track" button to start tracking this city.</p>
     </div>
     <!-- Weather Overview -->
     <div class="flex flex-col items-center text-white py-12">
