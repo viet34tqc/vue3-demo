@@ -35,6 +35,7 @@ const trackCity = () => {
 
   nextTrackedCities.push(locationObj);
   localStorage.setItem("trackedCities", JSON.stringify(nextTrackedCities));
+  alert("City added to the list successfully");
 };
 </script>
 
@@ -53,7 +54,11 @@ const trackCity = () => {
         <button class="border py-1 px-3 rounded-sm" @click="toggleModal">
           Guide
         </button>
-        <button class="border py-1 px-3 rounded-sm" @click="trackCity">
+        <button
+          class="border py-1 px-3 rounded-sm"
+          @click="trackCity"
+          v-if="route.query.preview"
+        >
           Track city
         </button>
       </div>
