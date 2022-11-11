@@ -41,16 +41,18 @@ const trackCity = () => {
 
 <template>
   <header class="sticky top-0 bg-weather-primary shadow-lg z-10">
-    <nav
-      class="container flex flex-col sm:flex-row items-center gap-4 text-white py-6"
+    <div
+      class="container flex flex-col sm:flex-row items-center justify-between gap-4 text-white py-6"
     >
       <RouterLink :to="{ name: 'home' }">
-        <div class="flex items-center gap-3">
-          <p class="text-2xl">Vue3 Demo</p>
-        </div>
+        <span class="flex items-center gap-3 text-2xl"> Vue3 Demo </span>
       </RouterLink>
-
-      <div class="flex gap-3 flex-1 justify-end">
+      <nav class="flex flex-col sm:flex-row items-center justify-center gap-2">
+        <RouterLink :to="{ name: 'home' }">
+          <span>Home</span>
+        </RouterLink>
+      </nav>
+      <div class="flex gap-3 justify-end">
         <button class="border py-1 px-3 rounded-sm" @click="toggleModal">
           Guide
         </button>
@@ -93,7 +95,7 @@ const trackCity = () => {
           </p>
         </div>
       </BaseModal>
-    </nav>
+    </div>
   </header>
 </template>
 

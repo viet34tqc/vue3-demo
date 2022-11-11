@@ -1,15 +1,14 @@
 <script setup>
 import { openWeatherAPIKey } from "@/constants";
 import { axiosInstance } from "@/core/axios";
-import { ref } from "vue";
+import { useCityStore } from "@/stores/city";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import CityCard from "./CityCard.vue";
 
-const trackedCities = ref([]);
+const cityStore = useCityStore();
+const { trackedCities } = storeToRefs(cityStore);
 const getCities = async () => {
-  if (!localStorage.getItem("trackedCities")) return;
-  trackedCities.value = JSON.parse(localStorage.getItem("trackedCities"));
-
   const requests = trackedCities.value.map((city) =>
     axiosInstance.get("https://api.openweathermap.org/data/2.5/weather", {
       params: {

@@ -1,6 +1,7 @@
 {
   "exclude": ["./node_modules"],
   "compilerOptions": {
+    "lib": ["ESNext", "dom"],
     "baseUrl": ".",
     "checkJs": true, // Add this when the import not work on save, or the suggestion broken
     "paths": {
