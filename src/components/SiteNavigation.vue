@@ -1,4 +1,6 @@
 <script setup>
+import { useCityStore } from "@/stores/city";
+import { storeToRefs } from "pinia";
 import { ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 import BaseModal from "./BaseModal.vue";
@@ -8,14 +10,11 @@ const toggleModal = () => {
 };
 
 const route = useRoute();
+const cityStore = useCityStore();
+const { trackedCities } = storeToRefs(cityStore);
 const trackCity = () => {
-  let nextTrackedCities = [];
-  if (localStorage.getItem("trackedCities")) {
-    nextTrackedCities = JSON.parse(localStorage.getItem("trackedCities"));
-  }
-
   // Check if the city is already on the list
-  const isTrackedAlready = nextTrackedCities.some(
+  const isTrackedAlready = trackedCities.value.some(
     (city) => city.id === `${route.params.state}-${route.params.city}`
   );
   if (isTrackedAlready) {
@@ -33,8 +32,7 @@ const trackCity = () => {
     },
   };
 
-  nextTrackedCities.push(locationObj);
-  localStorage.setItem("trackedCities", JSON.stringify(nextTrackedCities));
+  cityStore.addCity(locationObj);
   alert("City added to the list successfully");
 };
 </script>

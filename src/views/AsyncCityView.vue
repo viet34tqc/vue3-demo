@@ -1,5 +1,6 @@
 <script setup>
 import { axiosInstance } from "@/core/axios";
+import { useCityStore } from "@/stores/city";
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
 const getWeatherData = async () => {
@@ -33,11 +34,8 @@ const getWeatherData = async () => {
 const weatherData = await getWeatherData();
 const router = useRouter();
 const removeCity = () => {
-  const cities = JSON.parse(localStorage.getItem("trackedCities"));
-  const updatedCities = cities.filter(
-    (city) => city.id !== `${route.query.id}`
-  );
-  localStorage.setItem("trackedCities", JSON.stringify(updatedCities));
+  const { deleteCity } = useCityStore();
+  deleteCity(route.query.id);
   router.push({
     name: "home",
   });

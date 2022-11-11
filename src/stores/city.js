@@ -27,7 +27,9 @@ export const useCityStore = defineStore("city", () => {
     trackedCities.value.push(city);
   }
   function deleteCity(cityId) {
-    trackedCities.value.filter((city) => city.id !== cityId);
+    trackedCities.value = trackedCities.value.filter(
+      (city) => city.id !== cityId
+    );
   }
 
   return { trackedCities, addCity, deleteCity };
